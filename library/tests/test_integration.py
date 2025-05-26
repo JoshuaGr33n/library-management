@@ -88,6 +88,7 @@ class LoanFilterIntegrationTest(APITestCase):
         end_iso = quote_plus(end_datetime.replace(microsecond=0).isoformat().replace('+00:00','Z'))
         url = reverse('loan-list') + f'?borrowed_date_after={start_iso}&borrowed_date_before={end_iso}'
         response = self.client.get(url)
+        print("Response Content:", response.content)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
        
         

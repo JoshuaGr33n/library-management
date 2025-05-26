@@ -16,6 +16,7 @@ venv/
 .env.test
 .env.production
 
+
 # IDE
 .vscode/
 .idea/
@@ -112,3 +113,7 @@ dmypy.json
 
 # VS Code
 .vscode/
+
+fix.py
+
+generate_token.py
