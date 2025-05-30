@@ -9,6 +9,7 @@ from ..serializers.book_serializers import BookSerializer
 from ..filters import BookFilter
 from ..permissions import IsAdminUser
 from rest_framework.permissions import AllowAny
+from ..utils.swagger_decorators import hide_from_docs_yasg
 
 class BookListCreateView(APIView):
     permission_classes = [AllowAny]
@@ -17,9 +18,13 @@ class BookListCreateView(APIView):
     pagination_class = PageNumberPagination
     ordering = ['id'] 
     
-    @swagger_auto_schema(
-        operation_description="List all books",
-        responses={200: BookSerializer(many=True)}
+    # @swagger_auto_schema(
+    #     operation_description="List all books",
+    #     responses={200: BookSerializer(many=True)}
+    # )
+    @hide_from_docs_yasg(
+        dev_description="List all books",
+        dev_response={200: BookSerializer(many=True)}
     )
     def get(self, request):
         books = BookService.get_all_books()
